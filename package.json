@@ -11,6 +11,7 @@
     "clean": "yarn lerna clean -y && yarn lerna bootstrap && yarn lerna exec 'rm -rf ./dist'",
     "build": "yarn prepublish",
     "lerna": "lerna",
+    "start": "lerna run demo --stream --parallel",
     "dev": "lerna run dev --stream --parallel",
     "dev2": "while true; do yarn --check-files && yarn dev; done",
     "test-types": "yarn tsc",
