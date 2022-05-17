@@ -1,1 +1,1 @@
-export default () => <>page 2</>
+export default () => <>pagexx 2</>
