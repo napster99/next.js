@@ -13,6 +13,8 @@ import { NON_STANDARD_NODE_ENV } from '../lib/constants'
   }
 })
 
+console.log(' packages next bin ...')
+
 const defaultCommand = 'dev'
 export type cliCommand = (argv?: string[]) => void
 export const commands: { [command: string]: () => Promise<cliCommand> } = {
@@ -132,7 +134,7 @@ if (process.versions.pnp === '3') {
 // Make sure commands gracefully respect termination signals (e.g. from Docker)
 process.on('SIGTERM', () => process.exit(0))
 process.on('SIGINT', () => process.exit(0))
-
+console.log('>>>', commands[command]())
 commands[command]()
   .then((exec) => exec(forwardedArgs))
   .then(() => {
