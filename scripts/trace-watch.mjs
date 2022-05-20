@@ -3,23 +3,31 @@ import { watch } from 'fs'
 import path from 'path'
 import { fork } from 'child_process'
 
-const cwd = process.cwd()
-
-const cp = fork(`${path.join(cwd, 'scripts/start-demo.mjs')}`)
-cp.on('message', (msg) => {
-  console.log('父进程收到消息：', msg)
-})
-
 const dir = './packages'
+const cwd = process.cwd()
+const cp = fork(`${path.join(cwd, 'scripts/start-demo.mjs')}`)
+
+// 节流通知
+const throttle = (func, wait = 1000) => {
+  let timer;
+  return () => {
+      if (timer) {
+          return
+      }
+      timer = setTimeout(() => {
+          func();
+          timer = null
+      }, wait)
+  }
+}
 
 ;(async function () {
   try {
     console.log(`${dir}File listening enabled ....`)
-    watch(path.join(cwd, dir), { recursive: true }, (eventType, filename) => {
-      cp.send('我是父进程')
-      setInterval(() => cp.send('我是进程' + Date.now()), 2000)
-      console.log(`File changed: ${filename}, ${eventType}`)
-    })
+    watch(path.join(cwd, dir), { recursive: true }, throttle((eventType, filename) => {
+      console.log(`File changed: ${filename}, ${eventType}`, +new Date())
+      throttle(() => cp.send('filed change'))()
+    }))
   } catch (err) {
     console.error(err)
     process.exit(1)

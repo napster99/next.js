@@ -7,43 +7,41 @@ import { exec } from 'child_process'
  * pkill -f node
  */
 const cwd = process.cwd()
+const COMMAND_START = `cd ${path.join(cwd, 'demos/next-demo')}  && yarn demo`
 
+let workerProcess
 ;(async function () {
   try {
-    console.log('启动 yarn demo ...')
-    const workerProcess = exec(
-      `cd ${path.join(cwd, 'demos/next-demo')}  && yarn demo`
-    )
 
-    workerProcess.stdout.on('data', function (data) {
-      console.log(data)
-    })
+    const startServer = () => {
+      console.log('next-demo yarn demo ...')
+      workerProcess = exec(COMMAND_START)
+      console.log('workerProcess.pid::', workerProcess.pid + 1)
+      console.log('process.pid::', process.pid + 1)
+      workerProcess.stdout.on('data', function (data) {
+        console.log(data)
+      })
+      workerProcess.on('exit', function (code) {
+        console.log('workerProcess exit code: ' + code)
+      })
+    }
 
-    console.log('workerProcess.pid::', workerProcess.pid + 1)
-    console.log('process.pid::', process.pid + 1)
+    startServer()
 
-    // setTimeout(() => {
-    //   console.log('杀死workerProcess进程', workerProcess.pid + 1)
-    //   process.kill(workerProcess.pid + 1)
+    process.on('message', () => {
+      console.log('receive change message ...')
+      process.kill(workerProcess.pid + 1)
 
-    //   // console.log('杀死process进程', process.pid + 1)
-    //   // process.kill(process.pid + 1)
-    // }, 10e3)
-
-    workerProcess.on('exit', function (code) {
-      console.log('workerProcess子进程已退出，退出码 ' + code)
-    })
-
-    process.on('message', (m) => {
-      console.log('子进程收到消息xx：', m)
-      
+      setTimeout(() => {
+        console.log('resetart ....')
+        startServer()
+      }, 2000)
     })
 
     process.on('exit', (code) => {
-      console.log('process 进程退出', code)
+      console.log('process exit ...', code)
     })
 
-    // process.send('我是子进程')
   } catch (err) {
     console.error(err)
     process.exit(1)
