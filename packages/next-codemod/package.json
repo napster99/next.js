@@ -10,7 +10,9 @@
     "inquirer": "7.3.3",
     "is-git-clean": "1.1.0",
     "jscodeshift": "0.13.1",
-    "meow": "7.0.1"
+    "meow": "7.0.1",
+    "next": "^12.1.7-canary.3",
+    "xxx": "^0.0.1"
   },
   "files": [
     "transforms/*.js",

@@ -8,6 +8,8 @@
     "directory": "packages/next-bundle-analyzer"
   },
   "dependencies": {
-    "webpack-bundle-analyzer": "4.3.0"
+    "next": "^12.1.7-canary.3",
+    "webpack-bundle-analyzer": "4.3.0",
+    "xxx": "^0.0.1"
   }
 }

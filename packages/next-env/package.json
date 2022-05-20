@@ -32,5 +32,9 @@
     "@vercel/ncc": "0.33.1",
     "dotenv": "10.0.0",
     "dotenv-expand": "8.0.1"
+  },
+  "dependencies": {
+    "next": "^12.1.7-canary.3",
+    "xxx": "^0.0.1"
   }
 }

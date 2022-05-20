@@ -7,5 +7,9 @@
   },
   "peerDependencies": {
     "next": "*"
+  },
+  "dependencies": {
+    "next": "^12.1.7-canary.3",
+    "xxx": "^0.0.1"
   }
 }

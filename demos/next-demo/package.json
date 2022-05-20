@@ -1,5 +1,5 @@
 {
-  "name": "next-app",
+  "name": "next-demo",
   "version": "0.1.0",
   "scripts": {
     "demo": "next dev",
