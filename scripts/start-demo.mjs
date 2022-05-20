@@ -5,6 +5,10 @@ import { exec } from 'child_process'
 /**
  * killall node
  * pkill -f node
+ * 
+ * todo:
+ * - 打印信息输出优化
+ * - 增加守护进程鲁棒
  */
 const cwd = process.cwd()
 const COMMAND_START = `cd ${path.join(cwd, 'demos/next-demo')}  && yarn demo`
