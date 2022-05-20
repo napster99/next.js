@@ -7,43 +7,44 @@ import { exec } from 'child_process'
  * pkill -f node
  * 
  * todo:
- * - 打印信息输出优化
+ * - 打印信息输出优化 chalk
  * - 增加守护进程鲁棒
  */
-const cwd = process.cwd()
-const COMMAND_START = `cd ${path.join(cwd, 'demos/next-demo')}  && yarn demo`
+const INTERVAL = 1e3
+const CWD = process.cwd()
+const COMMAND_START = `cd ${path.join(CWD, 'demos/next-demo')}  && yarn demo`
 
 let workerProcess
 ;(async function () {
   try {
 
     const startServer = () => {
-      console.log('next-demo yarn demo ...')
+      console.info('next-demo yarn demo ...')
       workerProcess = exec(COMMAND_START)
-      console.log('workerProcess.pid::', workerProcess.pid + 1)
-      console.log('process.pid::', process.pid + 1)
+      console.info('workerProcess.pid::', workerProcess.pid + 1)
+      console.info('process.pid::', process.pid + 1)
       workerProcess.stdout.on('data', function (data) {
-        console.log(data)
+        console.info(data)
       })
       workerProcess.on('exit', function (code) {
-        console.log('workerProcess exit code: ' + code)
+        console.info('workerProcess exit code: ' + code)
       })
     }
 
     startServer()
 
     process.on('message', () => {
-      console.log('receive change message ...')
+      console.info('receive change message ...')
       process.kill(workerProcess.pid + 1)
 
       setTimeout(() => {
-        console.log('resetart ....')
+        console.info('resetart ....')
         startServer()
-      }, 2000)
+      }, INTERVAL)
     })
 
     process.on('exit', (code) => {
-      console.log('process exit ...', code)
+      console.info('process exit ...', code)
     })
 
   } catch (err) {

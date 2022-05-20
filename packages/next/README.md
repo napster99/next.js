@@ -1,7 +1,7 @@
 <p align="center">
   <a href="https://nextjs.org">
     <img src="https://assets.vercel.com/image/upload/v1607554385/repositories/next-js/next-logo.png" height="128">
-    <h1 align="center">Next.js</h1>
+    <h1 align="center">Debug Next.js</h1>
   </a>
 </p>
 
@@ -20,19 +20,19 @@
   </a>
 </p>
 
-## Getting Started
+## Preface
 
-Visit <a aria-label="next.js learn" href="https://nextjs.org/learn">https://nextjs.org/learn</a> to get started with Next.js.
+We all know Next.js is coding based on [Lerna](https://github.com/lerna/lerna). In order to facilitate debugging the source code, Recommend this tool
 
-## Documentation
+## Useage
 
-Visit [https://nextjs.org/docs](https://nextjs.org/docs) to view the full documentation.
+```dash
+# 启动
+yarn dev
 
-## Who is using Next.js?
+```
 
-Next.js is used by the world's leading companies. Check out the [Next.js Showcase](https://nextjs.org/showcase) to learn more.
-
-## Community
+## Setup
 
 The Next.js community can be found on [GitHub Discussions](https://github.com/vercel/next.js/discussions), where you can ask questions, voice ideas, and share your projects.
 
@@ -40,9 +40,9 @@ To chat with other community members you can join the [Next.js Discord](https://
 
 Our [Code of Conduct](https://github.com/vercel/next.js/blob/canary/CODE_OF_CONDUCT.md) applies to all Next.js community channels.
 
-## Contributing
+## Expect
 
-Please see our [contributing.md](/contributing.md).
+Extract into integration tool in `dn`
 
 ### Good First Issues
 

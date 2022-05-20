@@ -10,12 +10,12 @@ const cp = fork(`${path.join(cwd, 'scripts/start-demo.mjs')}`)
 // 节流通知
 const throttle = (func, wait = 1000) => {
   let timer;
-  return () => {
+  return (...args) => {
       if (timer) {
           return
       }
       timer = setTimeout(() => {
-          func();
+          func(...args);
           timer = null
       }, wait)
   }
@@ -26,7 +26,7 @@ const throttle = (func, wait = 1000) => {
     console.log(`${dir}File listening enabled ....`)
     watch(path.join(cwd, dir), { recursive: true }, throttle((eventType, filename) => {
       console.log(`File changed: ${filename}, ${eventType}`, +new Date())
-      throttle(() => cp.send('filed change'))()
+      cp.send('filed change')
     }))
   } catch (err) {
     console.error(err)

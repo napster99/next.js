@@ -21,7 +21,7 @@ const getServerImpl = async () => {
   return ServerImpl
 }
 
-console.log('uuuuu')
+console.log('ttt')
 export type NextServerOptions = Partial<DevServerOptions>
 
 export interface RequestHandler {

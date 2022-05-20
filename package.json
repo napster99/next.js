@@ -13,6 +13,7 @@
     "build": "yarn prepublish",
     "lerna": "lerna",
     "start": " lerna run demo --stream --parallel",
+    "dt": "yarn dev & sleep 20s && yarn tw",
     "tw": "node ./scripts/trace-watch.mjs",
     "dev": "lerna run dev --stream --parallel",
     "dev2": "while true; do yarn --check-files && yarn dev; done",
