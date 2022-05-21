@@ -26,11 +26,13 @@ We all know Next.js is coding based on [Lerna](https://github.com/lerna/lerna). 
 
 ## Useage
 
-```Makefile
+```cmd
 # Start dev server with lerna run dev --stream --parallel
 yarn dev
+
 # Monitor the file changes under packages to notify the process to restart
 yarn tw
+
 # One touch start with yarn dev & yarn tw
 yarn dn
 ```
@@ -45,8 +47,17 @@ yarn dn
     "demos/*"
   ],
 }
+```
+
+```cmd
 lerna bootstrap
+```
+
+```cmd
 npx create-next-app `project-name`
+```
+
+```cmd
 lerna add next --scope=`project-name`
 ```
 
