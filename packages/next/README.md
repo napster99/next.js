@@ -26,33 +26,30 @@ We all know Next.js is coding based on [Lerna](https://github.com/lerna/lerna). 
 
 ## Useage
 
-```dash
-# 启动
+```Makefile
+# Start dev server with lerna run dev --stream --parallel
 yarn dev
-
+# Monitor the file changes under packages to notify the process to restart
+yarn tw
+# One touch start with yarn dev & yarn tw
+yarn dn
 ```
 
 ## Setup
 
-The Next.js community can be found on [GitHub Discussions](https://github.com/vercel/next.js/discussions), where you can ask questions, voice ideas, and share your projects.
-
-To chat with other community members you can join the [Next.js Discord](https://nextjs.org/discord).
-
-Our [Code of Conduct](https://github.com/vercel/next.js/blob/canary/CODE_OF_CONDUCT.md) applies to all Next.js community channels.
+```Makefile
+/* packages.json */
+{
+"workspaces": [
+    "packages/*",
+    "demos/*"
+  ],
+}
+lerna bootstrap
+npx create-next-app `project-name`
+lerna add next --scope=`project-name`
+```
 
 ## Expect
 
-Extract into integration tool in `dn`
-
-### Good First Issues
-
-We have a list of [good first issues](https://github.com/vercel/next.js/labels/good%20first%20issue) that contain bugs which have a relatively limited scope. This is a great place to get started, gain experience, and get familiar with our contribution process.
-
-## Authors
-
-- Tim Neutkens ([@timneutkens](https://twitter.com/timneutkens)) – [Vercel](https://vercel.com/about/timneutkens)
-- Naoyuki Kanezawa ([@nkzawa](https://twitter.com/nkzawa)) – [Vercel](https://vercel.com/about/nkzawa)
-- Guillermo Rauch ([@rauchg](https://twitter.com/rauchg)) – [Vercel](https://vercel.com/about/rauchg)
-- Arunoda Susiripala ([@arunoda](https://twitter.com/arunoda))
-- Tony Kovanen ([@tonykovanen](https://twitter.com/tonykovanen))
-- Dan Zajdband ([@impronunciable](https://twitter.com/impronunciable))
+Extract into integration tool in `dn` ...
